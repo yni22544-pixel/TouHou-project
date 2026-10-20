@@ -1,4 +1,5 @@
 <!doctype html>
+<!-- 版本标记 v20261020-15：影像封面本地化；手机端排版修复；六次异变剧情扩充；异变卡手机端作品名居左、年份居右 -->
 <html lang="zh-CN">
 <head>
 <meta charset="UTF-8" />
@@ -204,11 +205,11 @@ header.nav{position:fixed;left:0;right:0;top:0;z-index:40;border-bottom:1px soli
 @media(min-width:768px){#menuBtn{display:none}}
 #menu{position:fixed;inset:0;z-index:30;display:none;background:rgba(18,18,22,.96);backdrop-filter:blur(16px)}
 #menu.open{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px}
-#menu a{display:flex;align-items:baseline;gap:12px;padding:10px 0;animation:pageIn .4s var(--ease) both}
+#menu a{display:flex;align-items:baseline;gap:12px;width:210px;padding:10px 0;animation:pageIn .4s var(--ease) both}
 #menu a .cn{font-size:30px;letter-spacing:.3em}
 #menu a .en{font-size:10px;letter-spacing:.3em;color:var(--paper-dim)}
 #menu a.cur{color:var(--crimson-soft)}
-#menu .back{margin-top:24px;border:1px solid rgba(212,0,39,.6);border-radius:999px;padding:8px 24px;font-size:14px;letter-spacing:.3em;color:var(--crimson-soft);animation:pageIn .4s .5s var(--ease) both}
+#menu .back{margin-top:24px;justify-content:center;border:1px solid rgba(212,0,39,.6);border-radius:999px;padding:8px 24px;font-size:14px;letter-spacing:.3em;color:var(--crimson-soft);animation:pageIn .4s .5s var(--ease) both}
 main{padding-top:56px}
 .wrap{max-width:72rem;margin:0 auto;padding:64px 16px 0}
 .wrap-narrow{max-width:64rem}
@@ -278,6 +279,7 @@ a.card:hover .arrow{transform:translateX(4px);color:var(--crimson-soft)}
 
 /* ============ 角色卡 ============ */
 .char-head{display:flex;align-items:center;gap:16px;margin-bottom:20px}
+/* 角色页顶部「主角组」：桌面三人并排，手机上文字挪到少女下方整行显示，避免竖排 */
 .duo{display:flex;align-items:flex-end;justify-content:center;gap:32px;margin-bottom:56px}
 .duo-cap{padding-bottom:40px;text-align:center}
 .duo-cap p{white-space:nowrap}
@@ -308,7 +310,12 @@ a.card:hover .arrow{transform:translateX(4px);color:var(--crimson-soft)}
 .incident .yr{font-size:30px;color:rgba(189,182,168,.4);transition:color .3s}
 .incident:hover .yr{color:rgba(255,59,92,.6)}
 @media(min-width:768px){.incident .side{display:flex;flex-direction:column;justify-content:space-between}.incident .yr{font-size:36px}}
-@media(max-width:767px){.incident .side{display:flex;align-items:baseline;gap:12px}}
+@media(max-width:767px){
+  .incident .side{display:flex;flex-wrap:wrap;align-items:baseline;gap:6px 12px}
+  .incident .side>div{display:contents}
+  .incident .yr{order:2;margin-left:auto}
+  .incident .name{order:3;width:100%;margin-top:2px}
+}
 .incident p{font-size:15px;color:var(--paper-dim);line-height:2}
 
 /* ============ 年表页 ============ */
@@ -347,6 +354,7 @@ a.card:hover .arrow{transform:translateX(4px);color:var(--crimson-soft)}
 .chips{display:flex;flex-wrap:wrap;gap:10px}
 .chip{border:1px solid var(--hairline);border-radius:999px;background:var(--ink1);padding:6px 16px;font-size:12px;color:var(--paper-dim);transition:border-color .2s,color .2s}
 .chip:hover{border-color:rgba(212,0,39,.6);color:var(--paper)}
+@media(max-width:640px){#spinChips{flex-direction:column}#spinChips .chip{text-align:center}}
 
 /* ============ 影像页 ============ */
 .vcard{border:1px solid var(--hairline);border-radius:12px;background:var(--ink1);overflow:hidden}
@@ -385,6 +393,8 @@ footer.site-foot{position:relative;z-index:2;margin-top:96px;border-top:1px soli
 .zz-card{display:block;text-decoration:none;color:inherit}
 .zz-inner{display:flex;align-items:center;gap:18px}
 .zz-card.rev .zz-inner{flex-direction:row-reverse}
+/* 手机端：封面在左的卡片文字贴右，与封面在右的卡片形成镜像 */
+@media(max-width:767px){.zz-item.l .zz-text{text-align:right}.zz-item.l .zz-top{justify-content:flex-end}}
 .zz-cover{flex-shrink:0;width:clamp(76px,26%,104px);aspect-ratio:1/1;object-fit:cover;border-radius:8px}
 .zz-cover-slot{flex-shrink:0;width:clamp(76px,26%,104px);aspect-ratio:1/1;border:1px dashed rgba(247,244,238,.25);border-radius:8px;display:flex;align-items:center;justify-content:center;background:rgba(247,244,238,.03)}
 .zz-cover-slot span{font-size:11px;letter-spacing:.2em;color:rgba(189,182,168,.55);text-align:center;line-height:1.9}
@@ -617,7 +627,7 @@ a.zz-card:hover .zz-hint{color:var(--crimson-soft)}
         <div class="timeline" id="eraTl" style="margin-bottom:64px"></div>
         <div class="reveal">
           <h3 class="font-display" style="font-size:clamp(20px,3vw,28px);letter-spacing:.15em">同人音乐的宇宙 <span style="margin-left:8px;font-size:14px;letter-spacing:.3em" class="text-dim">MUSIC</span></h3>
-          <p class="text-dim" style="margin:8px 0 32px;max-width:42rem;font-size:14px;line-height:1.8">ZUN 的旋律是同人音乐人的共同语言。从电子到摇滚、从爵士到交响，<br>无数社团用自己的方式，重述着幻想乡的声音。</p>
+          <p class="text-dim" style="margin:8px 0 32px;max-width:42rem;font-size:14px;line-height:1.8">ZUN 的旋律是同人音乐人的共同语言。从电子到摇滚、从爵士到交响，无数社团用自己独特的方式，重述着幻想乡的声音。</p>
         </div>
         <div class="chips reveal" id="circleChips" style="margin-bottom:56px"></div>
       </div>
@@ -715,12 +725,12 @@ var LORE = [
 ];
 
 var INCIDENTS = [
-  {f:"东方红魔乡", n:"红雾异变", y:"2002", d:"盛夏的幻想乡被深红浓雾笼罩。黑幕是红魔馆的吸血鬼蕾米莉亚——她只是想遮挡阳光好出门玩。灵梦一路打进洋馆，在漫天绯色弹幕中结束了这场任性的异变。"},
-  {f:"东方妖妖梦", n:"春雪异变", y:"2003", d:"五月飞雪，春天失窃。为了集齐「春度」让西行妖满开，白玉楼的幽幽子收集了幻想乡的春意。灵梦、魔理沙与咲夜闯入冥界，在盛开的樱花下展开决战。"},
-  {f:"东方永夜抄", n:"永夜异变", y:"2004", d:"满月被替换成了虚假的月亮，永夜降临。黑幕来自月之都的罪人蓬莱山辉夜与八意永琳。人类与妖怪两两组队的「人妖组队」系统，让本作的故事格外绵长。"},
-  {f:"东方花映冢", n:"六十年一轮的<br>花之异变", y:"2005", d:"幻想乡所有的花同时盛开。这是外界亡者之灵涌入的六十年周期现象。四季映姬的审判、小野塚小町的渡船，讲述了一个关于生死与审判的温柔故事。"},
-  {f:"东方风神录", n:"守矢神社的迁入", y:"2007", d:"外来的神社带着整座山与湖泊搬进幻想乡，向博丽神社发起「信仰争夺战」。东风谷早苗自此登场，神明与人类信仰的主题正式登上舞台。"},
-  {f:"东方绀珠传", n:"月之都的侵略", y:"2015", d:"月之都为了躲避「纯化」的威胁，企图将幻想乡整个移居。灵梦一行一路打上梦境世界与月都，本作以超高难度与「完美无缺模式」闻名。"}
+  {f:"东方红魔乡", n:"红雾异变", y:"2002", d:"盛夏的幻想乡被深红的浓雾笼罩，阳光再也无法抵达地面。黑幕是红魔馆的吸血鬼蕾米莉亚——她只是想遮住阳光，好在白天出门散步。灵梦与魔理沙飞过雾之湖，一路突破门卫红美铃、大图书馆之主帕秋莉与女仆长十六夜咲夜的层层拦阻，登上红魔馆顶端，在漫天绯色弹雨中击败馆主。异变解决后，蕾米莉亚反倒成了神社的喝茶常客。这也是符卡规则制定后的第一场异变——从此「战斗即祭典」成为幻想乡的传统。"},
+  {f:"东方妖妖梦", n:"春雪异变", y:"2003", d:"已是五月，幻想乡却大雪纷飞，春天迟迟没有到来。真相是白玉楼的亡灵大小姐西行寺幽幽子收集了整个幻想乡的「春度」，只为让封印着她亡骸的妖树「西行妖」迎来满开。灵梦、魔理沙与咲夜三人穿过幽冥结界闯入冥界，先败庭师魂魄妖梦，再在漫天樱吹雪下与幽幽子展开死斗。满开最终未能到来，被夺走的春天回到了幻想乡——而西行妖树下长眠的秘密，幽幽子至今仍未知晓。"},
+  {f:"东方永夜抄", n:"永夜异变", y:"2004", d:"中秋将近，夜空中的满月却被替换成虚假的月亮，夜晚永远不会迎来天明。为了躲避月之都使者的追捕，永远亭的蓬莱山辉夜与八意永琳停止了黑夜的前进。本作中人类与妖怪两两组队——灵梦与紫、魔理沙与爱丽丝、咲夜与蕾米莉亚、妖梦与幽幽子——在永夜中奔走，最终攻入永远亭深处。辉夜的五道难题与永琳的秘术悉数告破，真正的月亮重新升起，辉夜也就此开始了她千年的家里蹲生活。"},
+  {f:"东方花映冢", n:"六十年一轮的<br>花之异变", y:"2005", d:"幻想乡所有的花在一夜之间同时盛开，幽灵也随处可见。这并非谁的阴谋，而是六十年一度的周期现象：外界大量亡者之灵涌入彼岸，来不及摆渡的灵魂便依附在了花朵上。死神小野塚小町为此忙得团团转，阎魔四季映姬则亲自下场，对每一个路过的人展开滔滔不绝的说教。本作采用双人对战射击玩法，少女们在花海中不期而遇、彼此交手，在弹幕往来间逐渐看清这场温柔异变的全貌——关于生死，关于审判，也关于宽恕。"},
+  {f:"东方风神录", n:"守矢神社的迁入", y:"2007", d:"一座外来的神社带着整座山与湖泊，浩浩荡荡地搬进了幻想乡——在外界信仰衰微的守矢神社，决定将整个圣地迁入此地，并向博丽神社发起了「信仰争夺战」。灵梦一路登上妖怪之山，穿过红叶与河童栖居的溪谷，先后遭遇现人神东风谷早苗、军神八坂神奈子与土著神洩矢诹访子。一场神明级别的弹幕对决之后，双方照例以宴会收场：守矢神社在山巅安顿下来，早苗也从此成为幻想乡的常驻自机，「神明与信仰」的主题正式登上舞台。"},
+  {f:"东方绀珠传", n:"月之都的侵略", y:"2015", d:"月之都为躲避纯狐率领的「纯化」袭击，竟计划将幻想乡整个接管移居——梦境世界中开始出现诡异的机械与月之民的尖兵。依靠永琳调配的「未来之药」，灵梦、魔理沙、咲夜与铃仙以「完美无缺模式」出击：一旦中弹便时间倒流重来，不接受任何失误。四人一路打上梦境世界与月之静海，穿过地狱妖精克劳恩皮丝的狂气弹幕，直面无名的复仇之母纯狐。本作以系列最高难度著称，而月之都的移居计划，最终在漫天弹幕下宣告破产。"}
 ];
 
 var PC98 = [
@@ -752,10 +762,10 @@ var WINDOWS_WORKS = [
 var SPINOFFS = ["东方萃梦想（2004 · 格斗）","东方文花帖（2005 · 摄影）","东方绯想天（2008 · 格斗）","东方非想天则（2009 · 格斗）","东方文花帖DS（2010 · 摄影）","东方心绮楼（2013 · 格斗）","弹幕天邪鬼（2014）","东方深秘录（2015 · 格斗）","东方凭依华（2017 · 格斗）","秘封噩梦日记（2018 · 摄影）","东方刚欲异闻（2021 · 格斗）","恋弹者们的黑集市（2022）"];
 
 var VIDEOS = [
-  {bv:"BV1Cf4y1U7cH", t:"【东方project】入坑指南", tag:"新手必读", pic:"https://i2.hdslb.com/bfs/archive/ec01d5a5ea650210df3f321226bf94c10fd3e167.jpg", d:"想了解东方却不知从何入手？这支入坑向指南用十几分钟带你走完三十年的幻想乡——游戏、音乐、同人文化一网打尽。"},
-  {bv:"BV1xx411c79H", t:"【東方】Bad Apple!! PV【影絵】", tag:"传说级同人 PV", pic:"https://i1.hdslb.com/bfs/archive/753453a776fca838165a52c7511e8557857b61ea.jpg", d:"2009 年横空出世的影绘 PV，以黑白剪影串联起幻想乡全员，播放量破亿的同人奇迹，也是让无数圈外人第一次听说「东方」的作品。"},
-  {bv:"BV1Rs411x79C", t:"猩猩也能懂的东方project · 绀珠传（上）", tag:"经典科普系列", pic:"https://i1.hdslb.com/bfs/archive/4b10704ec7806dd1588adfd90ec24f0ad8f18c86.jpg", d:"著名科普系列「猩猩也能懂的东方project」：用最通俗的方式讲解正作剧情与设定，本期讲述幻想乡与月之都的恩怨。"},
-  {bv:"BV1GW411S7vx", t:"幻想万华镜 ～The Memories Of Phantasm", tag:"同人动画 · 满福神社", pic:"https://i1.hdslb.com/bfs/archive/4bd2058baea400deeec359279e3ed2d82b1dd659.jpg", d:"同人社团满福神社倾力制作的系列同人动画。第一话《春雪异变之章》改编自救赎冥界春意的《东方妖妖梦》，作画与音乐均为同人顶级水准。"}
+  {bv:"BV1Cf4y1U7cH", t:"【东方project】入坑指南", tag:"新手必读", pic:"./covers/video1.jpg", d:"想了解东方却不知从何入手？这支入坑向指南用十几分钟带你走完三十年的幻想乡——游戏、音乐、同人文化一网打尽。"},
+  {bv:"BV1xx411c79H", t:"【東方】Bad Apple!! PV【影絵】", tag:"传说级同人 PV", pic:"./covers/video2.png", d:"2009 年横空出世的影绘 PV，以黑白剪影串联起幻想乡全员，播放量破亿的同人奇迹，也是让无数圈外人第一次听说「东方」的作品。"},
+  {bv:"BV1Rs411x79C", t:"猩猩也能懂的东方project · 绀珠传（上）", tag:"经典科普系列", pic:"./covers/video3.jpg", d:"著名科普系列「猩猩也能懂的东方project」：用最通俗的方式讲解正作剧情与设定，本期讲述幻想乡与月之都的恩怨。"},
+  {bv:"BV1GW411S7vx", t:"幻想万华镜 ～The Memories Of Phantasm", tag:"同人动画 · 满福神社", pic:"./covers/video4.jpg", d:"同人社团满福神社倾力制作的系列同人动画。第一话《春雪异变之章》改编自救赎冥界春意的《东方妖妖梦》，作画与音乐均为同人顶级水准。"}
 ];
 
 var ERAS = [
@@ -899,7 +909,7 @@ function renderVideos(){
   el("videoGrid").innerHTML = VIDEOS.map(function(v,i){
     return '<div class="reveal" style="transition-delay:'+(i%2*100)+'ms"><article class="vcard">'
       + '<div class="vscreen"><button class="vfacade" data-bv="'+v.bv+'" aria-label="播放：'+v.t+'">'
-      + '<img class="vcover" src="'+v.pic+'" alt="" loading="lazy" onerror="this.style.display=\'none\'">'
+      + '<img class="vcover" src="'+v.pic+'" alt="" loading="lazy" referrerpolicy="no-referrer" onerror="this.style.display=\'none\'">'
       + '<span class="vshade" aria-hidden="true"></span>'
       + '<span class="c1" aria-hidden="true"></span><span class="c2" aria-hidden="true"></span>'
       + '<span class="play"><svg width="22" height="22" viewBox="0 0 24 24" fill="#f7f4ee"><path d="M8 5.5v13l11-6.5-11-6.5Z"/></svg></span>'
