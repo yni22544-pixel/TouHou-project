@@ -1046,7 +1046,7 @@ function observeReveals(){
   Array.prototype.forEach.call(document.querySelectorAll(".reveal:not(.is-visible)"), function(n){ observer.observe(n); });
 }
 
-var GATE_BGM = "major.m4a"; // 结界之门背景音乐
+var GATE_BGM = "./music/major.m4a"; // 结界之门背景音乐
 var gateAudio = null;
 function playGateBgm(){
   if (!GATE_BGM) return;
