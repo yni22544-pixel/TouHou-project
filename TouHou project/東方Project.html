@@ -3,7 +3,34 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<meta name="description" content="東方Project 非官方粉丝介绍站——起源、角色、剧情、作品年表、影像与同人文化。" />
+<meta name="description" itemprop="description" content="从系列起源到角色、异变剧情、作品年表、影像与同人文化，一起走进幻想乡。由轩然制作的非官方東方Project粉丝介绍站。" />
+<meta itemprop="name" content="~東方Project~ 幻想乡之门" />
+<meta itemprop="image" content="https://touhou.ok.kimi.link/share-square-v2.jpg" />
+<link rel="image_src" href="https://touhou.ok.kimi.link/share-square-v2.jpg" />
+<meta name="theme-color" content="#121216" />
+<link rel="canonical" href="https://touhou.ok.kimi.link/" />
+<meta property="og:type" content="website" />
+<meta property="og:locale" content="zh_CN" />
+<meta property="og:url" content="https://touhou.ok.kimi.link/" />
+<meta property="og:site_name" content="東方Project 幻想乡之门" />
+<meta property="og:title" content="~東方Project~ 幻想乡之门" />
+<meta property="og:description" content="从系列起源到角色、异变剧情、作品年表、影像与同人文化，一起走进幻想乡。由轩然制作的非官方東方Project粉丝介绍站。" />
+<meta property="og:image" content="https://touhou.ok.kimi.link/share-square-v2.jpg" />
+<meta property="og:image:secure_url" content="https://touhou.ok.kimi.link/share-square-v2.jpg" />
+<meta property="og:image:type" content="image/jpeg" />
+<meta property="og:image:width" content="600" />
+<meta property="og:image:height" content="600" />
+<meta property="og:image:alt" content="幻想乡之门：月亮、鸟居与樱花下的東方Project介绍站" />
+<meta property="og:image" content="https://touhou.ok.kimi.link/share-cover-vertical.png" />
+<meta property="og:image:type" content="image/png" />
+<meta property="og:image:width" content="1080" />
+<meta property="og:image:height" content="1440" />
+<meta property="og:image:alt" content="竖版分享图：幻想乡之门的月亮、鸟居与樱花" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="~東方Project~ 幻想乡之门" />
+<meta name="twitter:description" content="从系列起源到角色、异变剧情、作品年表、影像与同人文化，一起走进幻想乡。" />
+<meta name="twitter:image" content="https://touhou.ok.kimi.link/share-cover.png" />
+<link rel="icon" href="./favicon.svg" type="image/svg+xml" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@500;700;900&display=swap" rel="stylesheet" />
 <title>~東方project~ 幻想乡之门</title>
@@ -12,7 +39,7 @@
 :root{
   --ink0:#121216; --ink1:#1b1b20; --ink2:#363636;
   --paper:#f7f4ee; --paper-dim:#bdb6a8;
-  --crimson:#d40027; --crimson-soft:#ff3b5c;
+  --crimson:#d40027; --crimson-soft:#ff3b5c; --link-hover:#f0c85e;
   --hairline:rgba(247,244,238,.14);
   --ease:cubic-bezier(.23,1,.32,1);
 }
@@ -26,6 +53,10 @@ body{
 }
 ::selection{background:var(--crimson);color:var(--paper)}
 a{color:inherit;text-decoration:none}
+.text-link{color:#ff6b6b;text-decoration:underline;text-underline-offset:3px;transition:color .2s ease}
+.text-link:hover,.text-link:focus-visible{color:var(--link-hover)}
+.foot-inner .text-link{color:var(--crimson)}
+.foot-inner .text-link:hover,.foot-inner .text-link:focus-visible{color:var(--link-hover)}
 button{font:inherit;color:inherit;background:none;border:none;cursor:pointer}
 button:focus-visible,a:focus-visible{outline:2px solid var(--crimson-soft);outline-offset:3px;border-radius:4px}
 
@@ -409,6 +440,7 @@ a.zz-card:hover .zz-hint{color:var(--crimson-soft)}
 </style>
 </head>
 <body>
+<div style="display:none" aria-hidden="true"><img src="https://touhou.ok.kimi.link/share-square-v2.jpg" width="600" height="600" alt="" /></div>
 <div id="bg" aria-hidden="true"></div>
 <canvas id="sakura" aria-hidden="true"></canvas>
 
@@ -644,8 +676,8 @@ a.zz-card:hover .zz-hint{color:var(--crimson-soft)}
         <rect x="11" y="7.8" width="2" height="3.6" fill="#d40027"/>
       </svg>
       <p class="t1 font-display">幻想乡观光协会 · 非官方粉丝介绍站</p>
-      <p class="t2">東方Project 原作 © 上海爱丽丝幻乐团 / ZUN。本站为前端学习作品，仅作学习与交流之用；完整百科可访问 <a href="https://www.thwiki.cc/" target="_blank" style="color:#d40027;text-decoration:underline">东方project维基百科</a> 查看。站内视频来自哔哩哔哩公开 embed，图片来源于网络，版权归原作者所有。</p>
-      <p class="t2">本站由 <a href="https://github.com/yni22544-pixel/TouHou-project" target="_blank" style="color:#d40027;text-decoration:underline">轩然</a> 创建和维护。</p>
+      <p class="t2">東方Project 原作 © 上海爱丽丝幻乐团 / ZUN。本站为前端学习作品，仅作学习与交流之用；完整百科可访问 <a href="https://www.thwiki.cc/" target="_blank" class="text-link">东方project维基百科</a> 查看。站内视频来自哔哩哔哩公开 embed，图片来源于网络，版权归原作者所有。</p>
+      <p class="t2">本站由 <a href="https://github.com/yni22544-pixel/TouHou-project" target="_blank" class="text-link">轩然</a> 创建和维护。</p>
     </div>
   </footer>
 </div>
@@ -769,7 +801,7 @@ var VIDEOS = [
 
 var ERAS = [
   {y:"1996—2001", t:"静默的黎明", d:"PC-98 旧五作在小众的同人圈子里悄悄流传。此时的东方还只是 Comiket 角落里一个不起眼的社团摊位。"},
-  {y:"2002—2006", t:"红魔乡的引爆", d:"《红魔乡》让东方在 Windows 时代重生。2004 年，专属的<a href=\"https://www.thwiki.cc/博丽神社例大祭\" target=\"_blank\" style=\"color:#ff6b6b; font-weight:bold;\">「博丽神社例大祭」</a>首次举办；niconico 诞生后，东方 MAD 与 Arrange 音乐开始病毒式传播。"},
+  {y:"2002—2006", t:"红魔乡的引爆", d:"《红魔乡》让东方在 Windows 时代重生。2004 年，专属的<a href=\"https://www.thwiki.cc/博丽神社例大祭\" target=\"_blank\" class=\"text-link\" style=\"font-weight:bold;\">「博丽神社例大祭」</a>首次举办；niconico 诞生后，东方 MAD 与 Arrange 音乐开始病毒式传播。"},
   {y:"2007—2012", t:"御三家时代", d:"东方与 VOCALOID、偶像大师并称 niconico「御三家」。2009 年《Bad Apple!!》影绘 PV 成为现象级作品；例大祭参展社团突破数千，Comiket 上东方分区长期占据最大规模。"},
   {y:"2013—2019", t:"走向世界", d:"官方漫画、书籍持续出版；Steam 上架让正作走向全球；中国大陆的 THBWiki、同人展会与线下 Only 活动蓬勃生长，「车万」成为中文互联网的共同暗号。"},
   {y:"2020—2026", t:"幻想乡 today", d:"官方授权手游《东方 LostWord》《东方弹幕神乐》上线；2025 年第 20 部整数作《东方锦上京》发售；2026 年，初代《红魔乡》的官方重制《东方红魔乡：新典》发售，首次支持官方中文。三十年过去，幻想乡依然年轻。"}
