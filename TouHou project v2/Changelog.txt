@@ -1,0 +1,69 @@
+================================================================
+  中文
+================================================================
+【构成】
+  東方Project.html        主页面
+  build_ssr.js            预渲染构建脚本
+  avatars/  covers/       页面实际引用的 WebP 图片
+  music/  favicon.svg     背景音乐与站点图标
+
+【更新】
+1. 图片：51 张图转为 WebP（头像 256px / 封面 400px / 视频封面 720px）；loading="lazy"
+2. 字体：Google Fonts 改为非阻塞加载
+3. 无障碍：移动菜单同步 aria-hidden/aria-expanded/aria-label，加 Tab 焦点陷阱与背景滚动锁、关闭回焦；
+   新增音乐开关；调整对比度不足的两处文字；视频 iframe 加 tabindex 并在替换后回焦；日文加 lang="ja"；
+   尊重 prefers-reduced-motion。
+4. 性能：改为构建期预渲染（SSR），运行时只补交互；resize 用 rAF 节流；
+   樱花画布可暂停；弹幕尺寸守卫与 will-change
+5. 元信息：color-scheme、去重 og:image、noscript、补 rel="noopener"、修改错字
+6. 渐进增强：无 JS 时隐藏门页、直接呈现全部内容；视频门面是真实的 B 站链接，无 JS 也能点开
+
+【改内容】
+  改 東方Project.html 里第 ~680-810 行的数据数组（CHARACTERS / WINDOWS_WORKS / VIDEOS …），
+  然后在含 jsdom 的环境里执行：
+      node build_ssr.js
+  脚本会自动剥掉上一轮的预渲染产物再重新生成，可重复执行、结果字节一致
+
+【说明】
+  - 运行时交互（音乐、视频替换、路由、樱花）依赖 JS；无 JS 时为静态长页面
+
+
+================================================================
+  English
+================================================================
+
+[Package contents]
+  東方Project.html      main page (prerendered)
+  build_ssr.js          prerender build script
+  avatars/  covers/     WebP images actually referenced by the page
+  music/  favicon.svg   background music and site icon
+
+[What changed]
+ 1. Images: 51 images converted to WebP (avatars 256px / covers 400px / video
+   thumbnails 720px); all tagged loading="lazy"
+ 2. Fonts: Google Fonts now load non-blocking (media="print" switched to "all"
+   on load, <noscript> fallback)
+ 3. Accessibility: the mobile menu keeps aria-hidden / aria-expanded /
+   aria-label in sync, plus a Tab focus trap, background scroll lock and
+   focus return on close; new music toggle; two low-contrast texts raised to
+   comfortable ratios; video iframes get tabindex and are refocused after the
+   swap; Japanese text marked lang="ja"; prefers-reduced-motion respected
+ 4. Performance: build-time prerendering (SSR), the runtime only wires up
+   interactions; resize throttled with rAF; the sakura canvas can be paused;
+   danmaku size guard and will-change
+ 5. Metadata: color-scheme, duplicate og:image removed, <noscript>, missing
+   rel="noopener" added, typo fixed
+ 6. Progressive enhancement: without JS the gate is hidden and the full
+   content is shown; video facades are real Bilibili links, so they open
+   even with JS disabled
+
+[Editing content]
+  Edit the data arrays in 東方Project.html (CHARACTERS / WINDOWS_WORKS /
+  VIDEOS ...), then run the following in an environment that has jsdom:
+      node build_ssr.js
+  The script strips the previous prerendered output before regenerating, so
+  it is idempotent and produces byte-identical results across runs.
+
+[Notes]
+  - Runtime interactions (music, video swap, routing, sakura) require JS;
+    without JS the site is a static long page
